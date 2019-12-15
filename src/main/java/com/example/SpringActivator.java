@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class HibernateNauka {
+public class SpringActivator {
 
 	public static void main(String[] args) {
-		SpringApplication.run(HibernateNauka.class, args);
+		SpringApplication.run(SpringActivator.class, args);
 	}
 
 }

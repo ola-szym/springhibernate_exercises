@@ -3,10 +3,15 @@ package com.example.car;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface CarRepository extends JpaRepository<Car,Long> {
-    Optional<Car> findCarByMakeAndColor(String make, String color);
-
+    Optional<Car> findCarByMakeAndColor(String make, Color color);
+//    Car findCarByMakeAndColor_withoutOptional(String make, Color color);
+    List<Car> findCarByColor(Color color);
+    List<Car> findCarByColorIn(List<Color> colors);
+    List<Car> findCarByMake(String make);
+    void deleteByColor(Color color);
 }

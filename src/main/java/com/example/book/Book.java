@@ -11,6 +11,7 @@ public class Book {
     @Id
     @GeneratedValue
     private Long id;
+
     private String name;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})

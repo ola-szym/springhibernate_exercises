@@ -27,7 +27,7 @@ public class CarService {
     }
 
     @Transactional // bardzo zla nazwa!
-    public List<Car> createCars2(List<String> makes, List<String> colors) {
+    public List<Car> createCars2(List<String> makes, List<Color> colors) {
         List<Car> cars = new ArrayList<>();
 
         for (int i = 0; i < makes.size(); i++) {
@@ -39,7 +39,7 @@ public class CarService {
     }
 
     @Transactional
-    public List<Car> createCars(List<String> makes, List<String> colors) {
+    public List<Car> createCars(List<String> makes, List<Color> colors) {
         List<Car> cars = new ArrayList<>();
 
         for (int i = 0; i < makes.size(); i++) {
@@ -56,7 +56,7 @@ public class CarService {
     // b) nie znalazl samochodu - wynik null
 
     @Transactional
-    public Car createCar(String make, String color) {
+    public Car createCar(String make, Color color) {
         Optional<Car> foundCar = carRepository.findCarByMakeAndColor(make, color);
         if (!foundCar.isPresent()) {
             Car car = new Car(make, color);
@@ -66,4 +66,63 @@ public class CarService {
         }
     }
 
+
+    @Transactional
+    public Optional<Car> modifiedCreateCar(String make, Color color) {
+        Optional<Car> foundCar = carRepository.findCarByMakeAndColor(make, color);
+        if (foundCar.isPresent()) {
+            return foundCar;
+        } else {
+            Car car = new Car(make, color);
+            return Optional.of(car);
+        }
+    }
+
+//    @Transactional
+//    public Car modifiedCreateCar2(String make, Color color) {
+//        Car foundCar = carRepository.findCarByMakeAndColor_withoutOptional(make, color);
+//        if (foundCar != null) {
+//            return foundCar;
+//        } else {
+//            Car car = new Car(make, color);
+//            return car;
+//        }
+//    }
+
+
+    @Transactional
+    public List<Car> findCarsByColor(Color color) {
+        return carRepository.findCarByColor(color);
+    }
+
+    @Transactional
+    public List<Car> findCarsByColors (List<Color> color){
+        List<Car> cars = new ArrayList<>();
+
+        for(Color i: color){
+            List<Car> foundCars = findCarsByColor(i);
+            cars.addAll(foundCars);
+        }
+        return cars;
+    }
+
+    @Transactional
+    public List<Car> findCarsByColors_2 (List<Color> colors) {
+        List<Car> cars = new ArrayList<>();
+
+        List<Car> foundCars = carRepository.findCarByColorIn(colors);
+        cars.addAll(foundCars);
+        return cars;
+    }
+
+
+    @Transactional
+    public List<Car> findCarsByMake(String make) {
+        return carRepository.findCarByMake(make);
+    }
+
+    @Transactional
+    public void deleteCarsByColor(Color color) {
+        carRepository.deleteByColor(color);
+    }
 }

@@ -97,45 +97,45 @@ public class StudentTest {
 //        Assert.assertEquals(2, foundStudents.size());
 //    }
 
-    @Test
-    @Transactional
-    public void shouldFindAllSubjectsForStudent() {
-        //given
-        Student student1 = new Student();
-        PersonalData personalData = new PersonalData();
-        personalData.setName("Piotr");
-        personalData.setLastName("Kowalski");
-        personalData.setPesel("91041583753");
-
-        Student student2 = new Student();
-        personalData.setName("Jan");
-        personalData.setLastName("Nowak");
-        personalData.setPesel("89101773682");
-
-        Subject subject1 = new Subject();
-        subject1.setName("Mathematics");
-
-        Subject subject2 = new Subject();
-        subject2.setName("English");
-
-        Set<Student> students = new HashSet<>();
-        students.add(student1);
-        students.add(student2);
-
-        subject1.setStudents(students);
-        subjectRepository.save(subject1);
-        em.flush();
-
-        subject2.setStudents(students);
-        subjectRepository.save(subject2);
-        em.flush();
-
-        //when
-        List<Subject> foundSubjects = subjectRepository.findByPersonalDataName(student1.getPersonalData().getName());
-
-        //then
-        Assert.assertEquals(2, foundSubjects.size());
-    }
+//    @Test
+//    @Transactional
+//    public void shouldFindAllSubjectsForStudent() {
+//        //given
+//        Student student1 = new Student();
+//        PersonalData personalData = new PersonalData();
+//        personalData.setName("Piotr");
+//        personalData.setLastName("Kowalski");
+//        personalData.setPesel("91041583753");
+//
+//        Student student2 = new Student();
+//        personalData.setName("Jan");
+//        personalData.setLastName("Nowak");
+//        personalData.setPesel("89101773682");
+//
+//        Subject subject1 = new Subject();
+//        subject1.setName("Mathematics");
+//
+//        Subject subject2 = new Subject();
+//        subject2.setName("English");
+//
+//        Set<Student> students = new HashSet<>();
+//        students.add(student1);
+//        students.add(student2);
+//
+//        subject1.setStudents(students);
+//        subjectRepository.save(subject1);
+//        em.flush();
+//
+//        subject2.setStudents(students);
+//        subjectRepository.save(subject2);
+//        em.flush();
+//
+//        //when
+//        List<Subject> foundSubjects = subjectRepository.findByPersonalDataName(student1.getPersonalData().getName());
+//
+//        //then
+//        Assert.assertEquals(2, foundSubjects.size());
+//    }
 
 //    @Test
 //    @Transactional

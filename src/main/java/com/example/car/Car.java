@@ -12,19 +12,29 @@ public class Car {
     private Long id;
 
     private String make;
-    private String color;
+    private Color color;
 
-    public Car(String make, String color) {
+    public Car(String make, Color color) {
         this.make = make;
         this.color = color;
     }
+
+    public Long getId() { return id; }
 
     public String getMake() {
         return make;
     }
 
-    public String getColor() {
+    public Color getColor() {
         return color;
+    }
+
+    public void setMake(String make) {
+        this.make = make;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
     }
 
 }
